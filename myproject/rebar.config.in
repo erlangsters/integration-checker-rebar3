@@ -1,0 +1,4 @@
+{erl_opts, [debug_info]}.
+{deps, [
+  {@project_name, {git, "https://github.com/erlangsters/@project_repo.git", {tag, "master"}}}
+]}.
