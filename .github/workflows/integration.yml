@@ -1,0 +1,36 @@
+name: Integration
+
+on:
+  push:
+    branches: ["master"]
+  workflow_dispatch:
+
+jobs:
+  check:
+    strategy:
+      matrix:
+        include:
+          - {name: etv, repo: erlang-term-validator}
+
+    runs-on: ubuntu-latest
+    container:
+      image: erlang:latest
+
+    steps:
+      - name: Get the source code
+        uses: actions/checkout@v3
+
+      - name: Download latest rebar3
+        run: |
+          cd myproject
+          wget https://s3.amazonaws.com/rebar3/rebar3
+          chmod +x rebar3
+
+      - name: Check project integration
+        run: |
+          cd myproject
+          sed \
+            -e 's/@project_name/${{matrix.name}}/g' \
+            -e 's/@project_repo/${{matrix.repo}}/g' \
+            rebar.config.in > rebar.config
+          ./rebar3 compile
