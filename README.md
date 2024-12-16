@@ -5,7 +5,7 @@ integrates well with the Rebar3 build system.
 
 All projects it's checking.
 
-- Erlang Term Validator
+- Term Validator
 
 Instead of a thorough check for all platforms, all architectures and all
 Erlang versions, it only checks using the latest stable 'erlang' image on Linux
@@ -29,7 +29,7 @@ values of the project you want to check.
 ```sh
 sed \
     -e 's/@project_name/etv/g' \
-    -e 's/@project_repo/erlang-term-validator/g' \
+    -e 's/@project_repo/term-validator/g' \
     rebar.config.in > rebar.config
 ```
 
